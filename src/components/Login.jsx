@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export const Login = () => {
 
+  
   const handleSubmit = (e)=> {
     e.preventDefault();
 
@@ -14,23 +16,24 @@ export const Login = () => {
     console.log( regexEmail.test(email) );
 
     if(email === '' || password === ''){
-      console.log('Input vacios');
+      Swal.fire('Los espacios pueden estar vacios', '', 'warning');
       return;
     }
     
     if(email !== '' && !regexEmail.test(email)) {
-      console.log('Correo invalido');
+      Swal.fire('No es un correo valido', '', 'error');
       return;
     }
 
     if(email !== 'challenge@alkemy.org' || password !== 'react'){
-      console.log('Credenciales inválidas');
+      Swal.fire('Credenciales Invalidas', '', 'warning');
       return;
     }
 
     axios
       .post('http://challenge-react.alkemy.org', {email, password})
       .then(res => {
+        Swal.fire('Login exitoso', '', 'success');
         console.log(res.data)
       })
   }
