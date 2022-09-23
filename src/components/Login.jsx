@@ -21,7 +21,14 @@ export const Login = () => {
     }
     
     if(email !== '' && !regexEmail.test(email)) {
-      Swal.fire('No es un correo valido', '', 'error');
+      Swal.fire({
+        icon: 'error',
+        title: 'Alert', 
+        html: '<p>No es un <b>correo</b> valido</p>',
+        timer: '2000',
+        position: 'top-right'
+        //se puede concatenar variables, poner images
+      });
       return;
     }
 
@@ -34,7 +41,8 @@ export const Login = () => {
       .post('http://challenge-react.alkemy.org', {email, password})
       .then(res => {
         Swal.fire('Login exitoso', '', 'success');
-        console.log(res.data)
+        const tokenRecibido = res.data.token;
+        localStorage.setItem('token', tokenRecibido)
       })
   }
 
