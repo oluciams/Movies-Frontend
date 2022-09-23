@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
 
+  const navigate = useNavigate();
   
   const handleSubmit = (e)=> {
     e.preventDefault();
@@ -11,6 +13,8 @@ export const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+
+    // eslint-disable-next-line no-useless-escape
     const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     console.log( regexEmail.test(email) );
@@ -42,7 +46,8 @@ export const Login = () => {
       .then(res => {
         Swal.fire('Login exitoso', '', 'success');
         const tokenRecibido = res.data.token;
-        localStorage.setItem('token', tokenRecibido)
+        localStorage.setItem('token', tokenRecibido);
+        navigate("/listado") 
       })
   }
 
