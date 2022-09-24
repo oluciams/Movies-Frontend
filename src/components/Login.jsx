@@ -1,11 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const Login = () => {
 
   const navigate = useNavigate();
+
+  let token = localStorage.getItem("token");
+  
+  if (token) {
+    return <Navigate to= "/listado"/>
+  }
+
   
   const handleSubmit = (e)=> {
     e.preventDefault();
