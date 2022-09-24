@@ -51,22 +51,26 @@ export const Login = () => {
       })
   }
 
-  return (
-    <>
-      <h2>Formulario de Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Correo Electronico:</span><br />
-          <input type="text" name="email" />
-        </label>
-        <br />
-        <label>
-          <span>Contraseña</span><br />
-          <input type="password" name="password" />
-        </label>
-        <br />                                                          
-        <button type="submit">Ingresar</button>
-      </form>
-    </>
+  return (  
+    <section className="d-flex align-items-center justify-content-center">
+      <div>  
+        <h2 className="my-3">Formulario de Login</h2>  
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">
+              <span>Correo Electronico:</span><br />
+              <input className="form-control" type="text" name="email" />
+            </label>
+          </div>        
+          <div  className="mb-3">
+            <label>
+              <span>Contraseña</span><br />
+              <input className="form-control" type="password" name="password" />
+            </label>                                                                
+          </div>
+          <button className="btn btn-success" type="submit">Ingresar</button>
+        </form>
+      </div>
+    </section> 
   )
 }

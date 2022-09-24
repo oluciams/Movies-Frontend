@@ -9,11 +9,13 @@ function App() {
   return (
   <>
     <Header/>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="listado" element={<Listado />} /> 
-      <Route path="contacto" element={<Contacto />} />   
-    </Routes>
+    <div className="container mt-3">
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="listado" element={<Listado />} /> 
+        <Route path="contacto" element={<Contacto />} />   
+      </Routes>
+    </div>
     <Footer/>  
   </>  
   );
