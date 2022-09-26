@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 export const PrivateRouter = ({ redirectPath }) => {
 
-  let token = localStorage.getItem("token");
+  let token = sessionStorage.getItem("token");
   
   if (!token) {
     return <Navigate to={ redirectPath }/>

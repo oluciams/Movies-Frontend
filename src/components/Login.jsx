@@ -7,7 +7,7 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
-  let token = localStorage.getItem("token");
+  let token = sessionStorage.getItem("token");
   
   if (token) {
     return <Navigate to= "/listado"/>
@@ -53,7 +53,7 @@ export const Login = () => {
       .then(res => {
         Swal.fire('Login exitoso', '', 'success');
         const tokenRecibido = res.data.token;
-        localStorage.setItem('token', tokenRecibido);
+        sessionStorage.setItem('token', tokenRecibido);
         navigate("/listado") 
       })
   }
