@@ -27,9 +27,7 @@ export const Listado = ()=> {
 
   useEffect(() => {
     getData()
-  }, [setMoviesList]);
-
-  console.log(moviesList)
+  }, [setMoviesList]);  
    
   return (     
     <div className="row">
