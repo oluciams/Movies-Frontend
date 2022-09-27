@@ -16,6 +16,14 @@ export const Results = () => {
       await axios.get(endPoint)
         .then(res => {
           const apiData = res.data.results;
+
+          if (apiData.length === 0) {
+            Swal.fire({
+              icon: 'error',  
+              html: '<p>Tu busqueda no arrojó resultados</p>'
+            })   
+
+          }
           setMoviesSearch(apiData)  
           console.log(apiData)
         })  
@@ -30,18 +38,20 @@ export const Results = () => {
 
   useEffect(() => {
     getDataSearch()
+    // eslint-disable-next-line
   }, [keyword]);
 
 
   return (
   <>
     <h2>Buscaste: <em>{keyword}</em></h2>
-    <div className="row">
+    <div className="row g-3">
+      {moviesSearch.length === 0 && <h3 className="mt-4">No arrojó resultados</h3>}
       {
         moviesSearch.map(({ title, poster_path, overview, id} )=>{
           return(
             <div className="col-4" key={id}>
-              <div className="card my-4" style={{width: "18rem"}}>
+              <div className="card h-100 my-4" style={{width: "18rem"}}>
                 <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className="card-img-top" alt="movie"/>
                 <div className="card-body">
                   <h5 className="card-title">{title.substring(0, 20)}</h5>

@@ -29,7 +29,7 @@ export const Detail = () => {
 
   useEffect(() => {
     getDataDetail()
-    
+    // eslint-disable-next-line
   }, [movieID]);
   
   return (

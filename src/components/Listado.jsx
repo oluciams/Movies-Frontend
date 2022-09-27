@@ -30,12 +30,12 @@ export const Listado = ()=> {
   }, [setMoviesList]);  
    
   return (     
-    <div className="row">
+    <div className="row g-3">
       {
         moviesList.map(({ title, poster_path, overview, id}, idx )=>{
           return(
             <div className="col-3" key={idx}>
-              <div className="card my-4" style={{width: "18rem"}}>
+              <div className="card h-100 my-4" style={{width: "18rem"}}>
                 <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className="card-img-top" alt="movie"/>
                 <div className="card-body">
                   <h5 className="card-title">{title.substring(0, 20)}</h5>
