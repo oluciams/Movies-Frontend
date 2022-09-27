@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export const Detail = () => {
 
   const [detailMovie, setDetailMovie] = useState({});
+  const [searchParams] = useSearchParams();
 
-  let query = new URLSearchParams(window.location.search);
-  let movieID = query.get('movieID');
-
+  let movieID = searchParams.get('movieID');
 
   const getDataDetail = ()=> {
 
@@ -18,7 +17,6 @@ export const Detail = () => {
     .then(res => {
       const apiData = res.data
       setDetailMovie(apiData)
-      console.log(apiData)
     })
     .catch (error => {  
       Swal.fire({
