@@ -1,9 +1,10 @@
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { AppRouter } from "./router/AppRouter";
-
+import "./css/app.css";
 
 function App() {
+
   return (
   <>
     <Header/>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 
-export const Listado = ()=> { 
+export const Listado = ({addOrRevomeFromFavs})=> { 
 
   const [moviesList, setMoviesList] = useState([]);
 
@@ -24,6 +24,7 @@ export const Listado = ()=> {
           })    
         })
   }
+  
 
   useEffect(() => {
     getData()
@@ -32,11 +33,12 @@ export const Listado = ()=> {
   return (     
     <div className="row g-3">
       {
-        moviesList.map(({ title, poster_path, overview, id}, idx )=>{
+        moviesList.map(({ title, poster_path, overview, id})=>{
           return(
-            <div className="col-3" key={idx}>
+            <div className="col-3" key={id}>
               <div className="card h-100 my-4" style={{width: "18rem"}}>
                 <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className="card-img-top" alt="movie"/>
+                <button onClick={addOrRevomeFromFavs} data-movie-id={id} className="favourite-btn">🖤</button>
                 <div className="card-body">
                   <h5 className="card-title">{title.substring(0, 20)}</h5>
                   <p className="card-text">{overview.substring(0, 50)}....</p>
