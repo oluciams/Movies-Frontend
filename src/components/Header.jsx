@@ -10,7 +10,7 @@ export const Header = () => {
           <button className="navbar-toggler" type="button">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div className="collapse navbar-collapse" id="navbarNav">        
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link className="nav-link active" to="/">Home</Link>
@@ -20,10 +20,7 @@ export const Header = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/favorite">favorites</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact">Contact</Link>
-              </li>          
+              </li>                   
             </ul>
           </div>
           <Search/>
