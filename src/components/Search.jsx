@@ -6,9 +6,9 @@ export const Search = () => {
 
   const navigate = useNavigate()  
 
- const handleSubmit = (e)=> {
-  e.preventDefault()
-  const keyword = e.currentTarget.keyword.value.trim();
+  const handleSubmit = (e)=> {
+    e.preventDefault()
+    const keyword = e.currentTarget.keyword.value.trim();
 
   if(keyword.length === 0 ){
     Swal.fire({

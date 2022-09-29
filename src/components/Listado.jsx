@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
+import { Card } from "./Card";
 
 
 export const Listado = ({addOrRevomeFromFavs})=> { 
@@ -31,24 +31,19 @@ export const Listado = ({addOrRevomeFromFavs})=> {
   }, [setMoviesList]);  
    
   return (     
-    <div className="row g-3">
+    <div className="row g-3 justify-content-center">
       {
-        moviesList.map(({ title, poster_path, overview, id})=>{
-          return(
-            <div className="col-3" key={id}>
-              <div className="card h-100 my-4" style={{width: "18rem"}}>
-                <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className="card-img-top" alt="movie"/>
-                <button onClick={addOrRevomeFromFavs} data-movie-id={id} className="favourite-btn">🖤</button>
-                <div className="card-body">
-                  <h5 className="card-title">{title.substring(0, 20)}</h5>
-                  <p className="card-text">{overview.substring(0, 50)}....</p>
-                  <Link to={`/detail?movieID=${id}`} className="btn btn-info">View Detail</Link>
-                </div>
-              </div>
-            </div> 
-          )
-        })
+        moviesList.map(({ title, poster_path, overview, id}, idx)=>(
+          <Card
+            key={idx}
+            id={id}
+            poster_path={poster_path}
+            title={title}
+            overview={overview}
+            addOrRevomeFromFavs={addOrRevomeFromFavs}  
+          />    
+        ))
       }
     </div>   
   )
-} 
+}

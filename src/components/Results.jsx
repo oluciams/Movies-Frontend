@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { Card } from './Card';
 
-export const Results = () => {
+export const Results = ({ addOrRevomeFromFavs }) => {
 
   const [moviesSearch, setMoviesSearch] = useState([]);
   const [searchParams] = useSearchParams();
@@ -24,8 +25,7 @@ export const Results = () => {
             })   
 
           }
-          setMoviesSearch(apiData)  
-          console.log(apiData)
+          setMoviesSearch(apiData) 
         })  
         .catch (error => {  
           Swal.fire({
@@ -43,28 +43,23 @@ export const Results = () => {
 
 
   return (
-  <>
-    <h2>Buscaste: <em>{keyword}</em></h2>
-    <div className="row g-3">
-      {moviesSearch.length === 0 && <h3 className="mt-4">No arrojó resultados</h3>}
-      {
-        moviesSearch.map(({ title, poster_path, overview, id} )=>{
-          return(
-            <div className="col-4" key={id}>
-              <div className="card h-100 my-4" style={{width: "18rem"}}>
-                <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className="card-img-top" alt="movie"/>
-                <div className="card-body">
-                  <h5 className="card-title">{title.substring(0, 20)}</h5>
-                  {/* <p className="card-text">{overview.substring(0, 50)}....</p> */}
-                  <Link to={`/detail?movieID=${id}`} className="btn btn-info">View Detail</Link>
-                </div>
-              </div>
-            </div> 
-          )
-        })
-      }
-    </div> 
-  </>  
+    <>
+      <h2>Buscaste: <em>{keyword}</em></h2>
+      <div className="row g-3">
+        {moviesSearch.length === 0 && <h3 className="mt-4">No arrojó resultados</h3>}
+        {
+          moviesSearch.map(({ title, poster_path, overview, id}, idx )=> (
+            <Card
+            key={idx}
+            id={id}
+            poster_path={poster_path}
+            title={title}
+            overview={overview}
+            addOrRevomeFromFavs={addOrRevomeFromFavs}
+            />
+          ))
+        }
+      </div> 
+    </>  
   )
-
 }
